@@ -4,7 +4,9 @@
     "description": "",
     "dependencies": {
         "core": "*",
-        "radio": "*"
+        "radio": "*",
+        "pxt-bellekermis": "workspace:02f0253c-59f7-4e6e-8c4a-74dee776c0cb",
+        "pxt-ng": "workspace:908b25fa-f3fa-4f58-dabb-3f3f9081fc9d"
     },
     "files": [
         "README.md",
@@ -14,5 +16,5 @@
         "test.ts"
     ],
     "public": false,
-    "additionalFilePaths": []
+    "preferredEditor": "tsprj"
 }
