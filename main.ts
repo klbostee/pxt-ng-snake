@@ -51,7 +51,12 @@ basic.forever(function () {
         currentSprite.set(LedSpriteProperty.X, prevSprite.get(LedSpriteProperty.X))
         currentSprite.set(LedSpriteProperty.Y, prevSprite.get(LedSpriteProperty.Y))
     }
+    let prevX = snake[0].get(LedSpriteProperty.X)
+    let prevY = snake[0].get(LedSpriteProperty.Y)
     snake[0].move(1)
+    if (snake[0].get(LedSpriteProperty.X) == prevX && snake[0].get(LedSpriteProperty.Y) == prevY) {
+        game.gameOver()
+    }
     basic.pause(500)
 
     // check for collisions
