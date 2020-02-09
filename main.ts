@@ -1,11 +1,17 @@
+let delay: number
+
 basic.showIcon(IconNames.Snake)
 while (true) {
-    if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
-        basic.clearScreen()
-        basic.pause(1000)
+    if (input.buttonIsPressed(Button.A)) {
+        delay = 500
+        break
+    } else if (input.buttonIsPressed(Button.B)) {
+        delay = 250
         break
     }
 }
+basic.clearScreen()
+basic.pause(1000)
 
 radio.setGroup(23)
 
@@ -57,7 +63,7 @@ basic.forever(function () {
     if (snake[0].get(LedSpriteProperty.X) == prevX && snake[0].get(LedSpriteProperty.Y) == prevY) {
         game.gameOver()
     }
-    basic.pause(500)
+    basic.pause(delay)
 
     // check for collisions
     for (let index = 0; index <= snake.length - 2; index++) {
