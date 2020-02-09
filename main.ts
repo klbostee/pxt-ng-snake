@@ -1,3 +1,6 @@
+ng.neopixels().clear()
+ng.neopixels().show()
+
 let delay: number
 
 basic.showIcon(IconNames.Snake)
