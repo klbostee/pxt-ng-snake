@@ -1,6 +1,13 @@
 ng.neopixels().clear()
 ng.neopixels().show()
 
+radio.setGroup(23)
+radio.sendNumber(0)
+
+input.onGesture(Gesture.Shake, function () {
+    control.reset()
+})
+
 let delay: number
 
 basic.showIcon(IconNames.Snake)
@@ -15,8 +22,6 @@ while (true) {
 }
 basic.clearScreen()
 basic.pause(1000)
-
-radio.setGroup(23)
 
 let snake: game.LedSprite[] = [game.createSprite(2, 2)]
 let tail: game.LedSprite[] = []
