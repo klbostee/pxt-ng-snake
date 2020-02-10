@@ -1,27 +1,11 @@
-ng.neopixels().clear()
-ng.neopixels().show()
-
-radio.setGroup(23)
-radio.sendNumber(0)
-
-input.onGesture(Gesture.Shake, function () {
-    control.reset()
-})
+ng.startWithIcon(IconNames.Snake)
 
 let delay: number
-
-basic.showIcon(IconNames.Snake)
-while (true) {
-    if (input.buttonIsPressed(Button.A)) {
-        delay = 500
-        break
-    } else if (input.buttonIsPressed(Button.B)) {
-        delay = 250
-        break
-    }
+if (ng.hardWasChosen()) {
+    delay = 250
+} else {
+    delay = 500
 }
-basic.clearScreen()
-basic.pause(1000)
 
 let snake: game.LedSprite[] = [game.createSprite(2, 2)]
 let tail: game.LedSprite[] = []
@@ -50,11 +34,6 @@ ng.onButtonPressed(ng.NGButtonPin.Left, function () {
     snake[0].set(LedSpriteProperty.Direction, 270)
 })
 
-kermis.onKermisNotePlayed(function () {
-    ng.neopixels().rotate(1)
-    ng.neopixels().show()
-})
-
 basic.forever(function () {
     // move snake
     let prevSprite: game.LedSprite = null
@@ -69,7 +48,7 @@ basic.forever(function () {
     let prevY = snake[0].get(LedSpriteProperty.Y)
     snake[0].move(1)
     if (snake[0].get(LedSpriteProperty.X) == prevX && snake[0].get(LedSpriteProperty.Y) == prevY) {
-        game.gameOver()
+        ng.gameOver()
     }
     basic.pause(delay)
 
@@ -77,7 +56,7 @@ basic.forever(function () {
     for (let index = 0; index <= snake.length - 2; index++) {
         let curSprite = snake[snake.length - index - 1]
         if (curSprite.isTouching(snake[0])) {
-            game.gameOver()
+            ng.gameOver()
         }
     }
 
@@ -91,34 +70,6 @@ basic.forever(function () {
         snake.push(newTail)
         food.set(LedSpriteProperty.X, Math.randomRange(0, 4))
         food.set(LedSpriteProperty.Y, Math.randomRange(0, 4))
-        game.addScore(1)
-        radio.sendNumber(game.score())
-        if (game.score() == 10) {
-            // woohoo!
-            game.pause() // pause rendering engine
-            input.onButtonPressed(Button.A, function () {
-                ng.neopixels().showRainbow(1, 360)
-                kermis.playFirstPartOfKermisChorus()
-                ng.neopixels().showColor(neopixel.colors(NeoPixelColors.Black))
-                ng.neopixels().show()
-            })
-            input.onButtonPressed(Button.B, function () {
-                ng.neopixels().showRainbow(1, 360)
-                kermis.playSecondPartOfKermisChorus()
-                ng.neopixels().showColor(neopixel.colors(NeoPixelColors.Black))
-                ng.neopixels().show()
-            })
-            basic.clearScreen()
-            let count = 0;
-            while (true) {
-                count += 1
-                if (count % 2 == 0) {
-                    basic.showIcon(IconNames.SmallHeart)
-                } else {
-                    basic.showIcon(IconNames.Heart)
-                }
-                basic.pause(100);
-            }
-        }
+        ng.incrementScore()
     }
 })
