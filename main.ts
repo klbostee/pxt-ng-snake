@@ -21,16 +21,16 @@ input.onButtonPressed(Button.B, function () {
     snake[0].turn(Direction.Right, 90)
 })
 
-ng.onButtonPressed(ng.NGButtonPin.Up, function () {
+ng.onButtonPressed(ng.NGButton.Up, function () {
     snake[0].set(LedSpriteProperty.Direction, 0)
 })
-ng.onButtonPressed(ng.NGButtonPin.Right, function () {
+ng.onButtonPressed(ng.NGButton.Right, function () {
     snake[0].set(LedSpriteProperty.Direction, 90)
 })
-ng.onButtonPressed(ng.NGButtonPin.Down, function () {
+ng.onButtonPressed(ng.NGButton.Down, function () {
     snake[0].set(LedSpriteProperty.Direction, 180)
 })
-ng.onButtonPressed(ng.NGButtonPin.Left, function () {
+ng.onButtonPressed(ng.NGButton.Left, function () {
     snake[0].set(LedSpriteProperty.Direction, 270)
 })
 

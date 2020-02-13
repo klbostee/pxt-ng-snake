@@ -1,11 +1,11 @@
 {
-    "name": "pxt-ng-snake",
+    "name": "ng-snake",
     "version": "0.0.7",
     "description": "",
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "ng": "github:klbostee/pxt-ng#v0.0.5"
+        "ng": "github:klbostee/pxt-ng#v0.0.7"
     },
     "files": [
         "README.md",
